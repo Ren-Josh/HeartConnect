@@ -11,10 +11,15 @@ import {
 export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
   const generateQR = (e: React.FormEvent) => {
     e.preventDefault();
-    const dataString = encodeURIComponent(JSON.stringify(formData));
-    setQrUrl(
-      `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${dataString}`,
-    );
+    if (!formData.sex || !formData.blood) {
+      document.getElementById("error-message")!.classList.remove("hidden");
+    } else {
+      document.getElementById("error-message")!.classList.add("hidden");
+      const dataString = encodeURIComponent(JSON.stringify(formData));
+      setQrUrl(
+        `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${dataString}`,
+      );
+    }
   };
 
   return (
@@ -106,6 +111,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
               onChange={(e) =>
                 setFormData({ ...formData, street: e.target.value })
               }
+              required
             />
           </div>
           <div>
@@ -116,6 +122,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
               onChange={(e) =>
                 setFormData({ ...formData, barangay: e.target.value })
               }
+              required
             />
           </div>
           <div>
@@ -126,6 +133,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
               onChange={(e) =>
                 setFormData({ ...formData, municipality: e.target.value })
               }
+              required
             />
           </div>
           <div>
@@ -136,6 +144,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
               onChange={(e) =>
                 setFormData({ ...formData, province: e.target.value })
               }
+              required
             />
           </div>
         </div>
@@ -174,6 +183,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
 
               setFormData({ ...formData, phone: cleaned });
             }}
+            required
           />
         </div>
       </div>
@@ -189,9 +199,12 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
           onChange={(e) =>
             setFormData({ ...formData, medical: e.target.value })
           }
+          required
         />
       </div>
-
+      <p className="text-red-500 text-sm hidden" id="error-message">
+        Please fill up all the fields before generating QR.
+      </p>
       <button
         type="submit"
         className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition"

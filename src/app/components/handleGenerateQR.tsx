@@ -14,7 +14,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
             <title>Heart-Connect | ${formData.name}</title>
             <style>
               body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; }
-              img { width: 300px; height: 300px; border: 1px solid #eee; }
+              img { width: 96px; height: 96px; border: 1px solid #eee; }
               h2 { color: #1d4ed8; margin-top: 20px; }
               p { color: #666; }
             </style>
@@ -44,7 +44,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
   };
 
   return (
-    <div className="lg:col-span-5 sticky top-28 print:hidden md:w-1/3">
+    <div className="lg:col-span-5 sticky top-28 print:hidden md:w-1/3 w-full">
       <div className="w-full flex flex-col items-center justify-center bg-blue-50 p-8 rounded-2xl border-2 border-dashed border-blue-200 min-h-125">
         {loading ? (
           <div className="flex flex-col items-center space-y-4">
