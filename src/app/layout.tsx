@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   title: "Heart Connect Healthcare",
   description:
     "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for patients or scan existing codes to retrieve personal medical information in seconds.",
-  icons: {
-    icon: "/path/to/favicon.png", // Path relative to the public directory
-    apple: "/path/to/apple-touch-icon.png",
-  },
 };
 
-export function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body
