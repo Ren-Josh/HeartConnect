@@ -89,7 +89,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
               <QrCode size={64} className="text-slate-200" />
             </div>
             <p className="text-slate-400 text-sm italic">
-              Waiting for patient details...
+              Waiting for details...
             </p>
           </div>
         )}

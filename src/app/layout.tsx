@@ -7,7 +7,7 @@ import { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Heart Connect Healthcare",
+  title: "Heart Connect",
   description:
     "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for student or scan existing codes to retrieve personal medical information in seconds.",
   keywords: [

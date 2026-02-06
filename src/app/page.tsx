@@ -21,7 +21,7 @@ export default function Home() {
               href="/generate"
               className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-200 active:scale-95"
             >
-              <QrCode size={22} /> Generate Patient QR
+              <QrCode size={22} /> Generate QR
             </Link>
             <Link
               href="/scan"

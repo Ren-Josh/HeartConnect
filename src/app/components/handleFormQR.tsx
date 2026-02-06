@@ -49,6 +49,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
           </label>
           <input
             type="number"
+            min={1}
             className="w-full border p-2 rounded"
             onChange={(e) => setFormData({ ...formData, age: e.target.value })}
             required
