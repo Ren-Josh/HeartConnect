@@ -9,9 +9,36 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Heart Connect Healthcare",
   description:
-    "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for patients or scan existing codes to retrieve personal medical information in seconds.",
+    "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for student or scan existing codes to retrieve personal medical information in seconds.",
+  keywords: [
+    "medical ID",
+    "healthcare QR codes",
+    "patient QR",
+    "medical system",
+    "heart",
+    "heart connect",
+    "connect",
+    "qr",
+    "heart qr",
+  ],
   verification: {
     google: "F5uRklSmP7A5vqlKItvPT9c0kiok_l4AbjCucmU_bvc",
+  },
+  openGraph: {
+    title: "Heart Connect QR",
+    description:
+      "Secure QR codes for student identification in schools and clinics.",
+    url: "https://heart-connectqr.vercel.app/",
+    siteName: "Heart Connect QR",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 1200,
+        height: 630,
+        alt: "Heart Connect QR",
+      },
+    ],
+    type: "website",
   },
 };
 
