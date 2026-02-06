@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Heart Connect Healthcare",
   description:
     "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for patients or scan existing codes to retrieve personal medical information in seconds.",
+  verification: {
+    google: "F5uRklSmP7A5vqlKItvPT9c0kiok_l4AbjCucmU_bvc",
+  },
 };
 
 export default function RootLayout({
