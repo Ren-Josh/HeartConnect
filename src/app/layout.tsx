@@ -61,7 +61,7 @@ export default function RootLayout({
         </main>
 
         <footer className="py-4 text-center text-slate-400 text-sm border-t border-slate-200 bg-white">
-          © 2026 Heart-Connect Healthcare System • Secure • Reliable.
+          © 2026 Heart-Connect • Accessible • Reliable.
         </footer>
       </body>
     </html>
