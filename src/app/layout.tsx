@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Heart Connect QR",
     description:
       "Secure QR codes for student identification in schools and clinics.",
-    url: "https://heart-connectqr.vercel.app/",
+    url: "https://heart-connect-qr.vercel.app/",
     siteName: "Heart Connect QR",
     images: [
       {
