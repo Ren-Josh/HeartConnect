@@ -27,8 +27,14 @@ export default function ScanQR() {
 
     const onScanSuccess = (decodedText: string) => {
       try {
-        if (decodedText.startsWith("{")) {
-          setPatientData(JSON.parse(decodedText));
+        let finalData: any = null;
+
+        if (decodedText.includes("?data=")) {
+          const urlParts = decodedText.split("?data=");
+          const rawJson = decodeURIComponent(urlParts[1]);
+          finalData = JSON.parse(rawJson);
+        } else if (decodedText.startsWith("{")) {
+          finalData = JSON.parse(decodedText);
         } else {
           const lines = decodedText.split("\n");
           const data: any = {};
@@ -36,11 +42,16 @@ export default function ScanQR() {
             const [key, ...val] = line.split(": ");
             if (key) data[key.toLowerCase().trim()] = val.join(": ").trim();
           });
-          setPatientData(data);
+          finalData = data;
         }
-        scanner.clear();
+
+        if (finalData) {
+          setPatientData(finalData);
+          scanner.clear().catch((err) => console.error("Clear error", err));
+        }
       } catch (err) {
-        console.error("Scanning error:", err);
+        console.error("Decoding error:", err);
+        alert("Could not parse medical data from this QR code.");
       }
     };
 

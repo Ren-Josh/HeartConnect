@@ -44,7 +44,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
   };
 
   return (
-    <div className="lg:col-span-5 sticky top-28 print:hidden md:w-1/3 w-full">
+    <div className="lg:col-span-5 sticky top-28 print:hidden md:w-2/3 w-full">
       <div className="w-full flex flex-col items-center justify-center bg-blue-50 p-8 rounded-2xl border-2 border-dashed border-blue-200 min-h-125">
         {loading ? (
           <div className="flex flex-col items-center space-y-4">

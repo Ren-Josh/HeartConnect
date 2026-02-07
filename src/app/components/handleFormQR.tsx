@@ -15,9 +15,12 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
       document.getElementById("error-message")!.classList.remove("hidden");
     } else {
       document.getElementById("error-message")!.classList.add("hidden");
-      const dataString = encodeURIComponent(JSON.stringify(formData));
+
+      const encodedData = encodeURIComponent(JSON.stringify(formData));
+      const baseUrl = "https://heart-connectqr.vercel.app/scan";
+      const redirectUrl = `${baseUrl}?data=${encodedData}`;
       setQrUrl(
-        `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${dataString}`,
+        `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(redirectUrl)}`,
       );
     }
   };
@@ -37,7 +40,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <User size={16} /> Full Name
           </label>
           <input
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
           />
@@ -50,7 +53,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
           <input
             type="number"
             min={1}
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded "
             onChange={(e) => setFormData({ ...formData, age: e.target.value })}
             required
           />
@@ -60,7 +63,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <Activity size={16} /> Blood Type
           </label>
           <select
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded"
             onChange={(e) =>
               setFormData({ ...formData, blood: e.target.value })
             }
@@ -83,7 +86,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <VenusAndMars size={16} /> Sex
           </label>
           <select
-            className="w-full border p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded"
             required
             onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
           >
@@ -104,11 +107,11 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium ">
-              House Number/Street/Subdivision:
+              House No./Street/Subdivision:
             </label>
             <input
               type="text"
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-gray-400/50 p-2 rounded"
               onChange={(e) =>
                 setFormData({ ...formData, street: e.target.value })
               }
@@ -119,7 +122,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <label className="text-sm font-medium">Barangay:</label>
             <input
               type="text"
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-gray-400/50 p-2 rounded"
               onChange={(e) =>
                 setFormData({ ...formData, barangay: e.target.value })
               }
@@ -130,7 +133,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <label className="text-sm font-medium">Municipality:</label>
             <input
               type="text"
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-gray-400/50 p-2 rounded"
               onChange={(e) =>
                 setFormData({ ...formData, municipality: e.target.value })
               }
@@ -141,7 +144,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
             <label className="text-sm font-medium">Province:</label>
             <input
               type="text"
-              className="w-full border p-2 rounded"
+              className="w-full border-2 border-gray-400/50 p-2 rounded"
               onChange={(e) =>
                 setFormData({ ...formData, province: e.target.value })
               }
@@ -158,7 +161,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
           <input
             type="tel"
             inputMode="numeric"
-            className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
+            className="w-full border-2 border-gray-400/50 p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="09XXXXXXXXX or +639XXXXXXXXX"
             value={formData.phone}
             onChange={(e) => {
@@ -194,7 +197,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
           <FileText size={16} /> Past Medical History
         </label>
         <textarea
-          className="w-full border p-2 rounded resize-none"
+          className="w-full border-2 border-gray-400/50 p-2 rounded resize-none"
           rows={3}
           placeholder="Past illnesses and allergies, N/A if none"
           onChange={(e) =>
