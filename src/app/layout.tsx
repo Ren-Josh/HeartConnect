@@ -98,13 +98,13 @@ export default function RootLayout({
             <nav className="flex gap-3">
               <Link
                 href="/generate"
-                className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all shadow-sm"
+                className="w-38 flex text-sm items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all shadow-sm"
               >
                 <QrCode size={18} /> Generate QR
               </Link>
               <Link
                 href="/scan"
-                className="flex items-center gap-2 px-5 py-2.5 bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold transition-all"
+                className="w-38 text-sm flex justify-center items-center gap-2 px-5 py-2.5 bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold transition-all"
               >
                 <ScanLine size={18} /> Scan QR
               </Link>

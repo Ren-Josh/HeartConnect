@@ -42,7 +42,7 @@ oklch(48.8% 0.243 264.376)
   cursor: pointer;
   border-radius: 4px;
   background-color: white;
-  padding: 4px;
+  padding: 8px;
   margin-block: 10px;
   margin-inline: 10px;
   font-size: small;
@@ -79,8 +79,8 @@ oklch(48.8% 0.243 264.376)
 
 #reader__dashboard_section_csr #html5-qrcode-button-camera-start {
   display: flex;
-  width: fit-content;
-  place-self: center;
+  min-width: 100%;
+  justify-content: center !important;
   padding: 8px;
   background-color: oklch(54.6% 0.245 262.881);
   border: 1px solid oklch(54.6% 0.245 262.881);
@@ -94,8 +94,8 @@ oklch(48.8% 0.243 264.376)
 
 #reader__dashboard_section_csr #html5-qrcode-button-camera-stop {
   display: flex;
-  width: fit-content;
-  place-self: center;
+  min-width: 100%;
+  justify-content: center !important;
   padding: 8px;
   background-color: oklch(54.6% 0.245 262.881);
   border: 1px solid oklch(54.6% 0.245 262.881);
@@ -109,8 +109,8 @@ oklch(48.8% 0.243 264.376)
 
 #reader__dashboard_section div #html5-qrcode-anchor-scan-type-change {
   display: flex;
-  width: fit-content;
-  place-self: center;
+  min-width: 100%;
+  justify-content: center !important;
   padding: 8px;
   margin-top: 10px;
   background-color: white;

@@ -63,7 +63,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
             <Activity size={16} /> Blood Type
           </label>
           <select
-            className="w-full border-2 border-gray-400/50 p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
             onChange={(e) =>
               setFormData({ ...formData, blood: e.target.value })
             }
@@ -86,7 +86,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
             <VenusAndMars size={16} /> Sex
           </label>
           <select
-            className="w-full border-2 border-gray-400/50 p-2 rounded"
+            className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
             required
             onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
           >
