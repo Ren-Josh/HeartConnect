@@ -136,7 +136,7 @@ export default function ScanQR() {
                 <h3 className="text-md font-bold text-slate-400 uppercase mb-2 flex items-center gap-1">
                   Contact Info
                 </h3>
-                <p className="whitespace-pre-line text-slate-700">
+                <p className="whitespace-pre-line">
                   <strong>Address: </strong>
                   {patientData.street}, {patientData.barangay},{" "}
                   {patientData.municipality}, {patientData.province}

@@ -19,6 +19,7 @@ body {
 }
 
 #reader {
+  min-width: 100%;
   padding: 10px !important;
 }
 
@@ -38,7 +39,8 @@ oklch(48.8% 0.243 264.376)
 
 #reader__dashboard_section_csr #html5-qrcode-select-camera {
   display: block;
-  min-width: 100%;
+  min-width: 100% !important;
+  max-width: 100% !important;
   border: 1px solid oklch(92.9% 0.013 255.508) !important;
   cursor: pointer;
   border-radius: 4px;
@@ -53,6 +55,7 @@ oklch(48.8% 0.243 264.376)
 }
 
 #reader__dashboard_section_csr div #html5-qrcode-button-camera-permission {
+  min-width: 100%;
   border-radius: 4px;
   padding: 8px;
   margin-top: 20px;
