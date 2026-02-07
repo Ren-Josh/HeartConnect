@@ -155,7 +155,7 @@ export default function ScanQR() {
           </div>
           <button
             onClick={() => window.location.reload()}
-            className="w-fit self-center flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-md transition-all shadow-lg hover:shadow-blue-200 active:scale-95"
+            className="w-fit self-center flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-md transition-all shadow-lg hover:shadow-blue-200 active:scale-95 cursor-pointer"
           >
             <ScanLine size={18} />
             Scan Another

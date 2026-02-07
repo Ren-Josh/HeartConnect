@@ -8,7 +8,7 @@ import {
   MapPin,
 } from "lucide-react";
 
-export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
+export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
   const generateQR = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.sex || !formData.blood) {
@@ -17,7 +17,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
       document.getElementById("error-message")!.classList.add("hidden");
 
       const encodedData = encodeURIComponent(JSON.stringify(formData));
-      const baseUrl = "https://heart-connectqr.vercel.app/scan";
+      const baseUrl = "https://heart-connect-qr.vercel.app/scan";
       const redirectUrl = `${baseUrl}?data=${encodedData}`;
       setQrUrl(
         `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(redirectUrl)}`,
@@ -211,7 +211,7 @@ export function HandleFormQR({ formData, setFormData, qrUrl, setQrUrl }: any) {
       </p>
       <button
         type="submit"
-        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+        className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition cursor-pointer"
       >
         Generate Heart-Connect QR
       </button>
