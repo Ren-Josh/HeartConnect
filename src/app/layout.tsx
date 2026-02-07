@@ -81,9 +81,13 @@ export default function RootLayout({
                 href="/"
                 className="flex items-center gap-2 text-blue-700 no-underline"
               >
-                <HeartPulse size={28} strokeWidth={2.5} />
+                <HeartPulse
+                  size={28}
+                  strokeWidth={2.5}
+                  className="text-red-500"
+                />
                 <span className="text-2xl font-extrabold tracking-tight">
-                  HEART-CONNECT
+                  <span className="text-red-500">HEART</span>-CONNECT
                 </span>
               </Link>
               <p className="text-slate-500 text-xs font-medium uppercase tracking-widest mt-1">
