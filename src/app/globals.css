@@ -38,13 +38,13 @@ oklch(48.8% 0.243 264.376)
 
 #reader__dashboard_section_csr #html5-qrcode-select-camera {
   display: block;
+  min-width: 100%;
   border: 1px solid oklch(92.9% 0.013 255.508) !important;
   cursor: pointer;
   border-radius: 4px;
   background-color: white;
   padding: 8px;
   margin-block: 10px;
-  margin-inline: 10px;
   font-size: small;
 }
 
