@@ -87,7 +87,7 @@ export default function ScanQR() {
           <div className="p-8 flex flex-col items-center">
             <div
               id="reader"
-              className="md:max-w-3/4 border-2 border-dashed border-blue-100 rounded-2xl bg-slate-50 overflow-hidden"
+              className="md:max-w-3/4 border-2  border-dashed border-blue-100 rounded-2xl bg-slate-50 overflow-hidden"
             ></div>
 
             <div className="mt-6 flex items-center justify-center gap-6 text-slate-400">

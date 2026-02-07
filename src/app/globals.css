@@ -17,3 +17,116 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+#reader {
+  padding: 10px !important;
+}
+
+#reader__scan_region {
+  img {
+    margin-inline: auto;
+  }
+}
+
+/* hover:bg-blue-700 hover:shadow-blue-200 active:scale-95 */
+
+/* border-slate-200 hover:border-blue-600 hover:text-blue-600 text-slate-700 rounded-xl font-bold text-lg transition-all active:scale-95" 
+oklch(92.9% 0.013 255.508)
+oklch(54.6% 0.245 262.881);
+oklch(48.8% 0.243 264.376)
+*/
+
+#reader__dashboard_section_csr #html5-qrcode-select-camera {
+  display: block;
+  border: 1px solid oklch(92.9% 0.013 255.508) !important;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: white;
+  padding: 4px;
+  margin-block: 10px;
+  margin-inline: 10px;
+  font-size: small;
+}
+
+#reader__dashboard_section_csr #html5-qrcode-select-camera:hover {
+  border-color: oklch(48.8% 0.243 264.376) !important;
+}
+
+#reader__dashboard_section_csr div #html5-qrcode-button-camera-permission {
+  border-radius: 4px;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: oklch(54.6% 0.245 262.881);
+  color: white;
+  cursor: pointer;
+  transition: all;
+}
+
+#reader__dashboard_section_csr div #html5-qrcode-button-camera-permission:hover,
+#html5-qrcode-button-camera-start:hover,
+#html5-qrcode-button-camera-stop:hover {
+  background-color: oklch(48.8% 0.243 264.376) !important;
+}
+
+#reader__dashboard_section div #html5-qrcode-anchor-scan-type-change:hover {
+  color: oklch(48.8% 0.243 264.376) !important;
+  border-color: oklch(48.8% 0.243 264.376) !important;
+}
+
+#reader__dashboard_section_csr span {
+  margin-right: 0 !important;
+}
+
+#reader__dashboard_section_csr #html5-qrcode-button-camera-start {
+  display: flex;
+  width: fit-content;
+  place-self: center;
+  padding: 8px;
+  background-color: oklch(54.6% 0.245 262.881);
+  border: 1px solid oklch(54.6% 0.245 262.881);
+  text-decoration: none !important;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all;
+  cursor: pointer;
+}
+
+#reader__dashboard_section_csr #html5-qrcode-button-camera-stop {
+  display: flex;
+  width: fit-content;
+  place-self: center;
+  padding: 8px;
+  background-color: oklch(54.6% 0.245 262.881);
+  border: 1px solid oklch(54.6% 0.245 262.881);
+  text-decoration: none !important;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all;
+  cursor: pointer;
+}
+
+#reader__dashboard_section div #html5-qrcode-anchor-scan-type-change {
+  display: flex;
+  width: fit-content;
+  place-self: center;
+  padding: 8px;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid oklch(92.9% 0.013 255.508);
+  text-decoration: none !important;
+  color: oklch(37.2% 0.044 257.287);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all;
+  cursor: pointer;
+}
+
+#html5-qrcode-button-file-selection {
+  cursor: pointer;
+}
+
+#html5-qrcode-button-file-selection:hover {
+  color: oklch(48.8% 0.243 264.376);
+}
