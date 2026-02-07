@@ -67,13 +67,13 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
             <div className="grid grid-cols-2 gap-3 w-full">
               <button
                 onClick={handlePrint}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-white border border-blue-200 text-blue-700 rounded-xl font-bold hover:bg-blue-50 transition shadow-sm"
+                className="flex items-center justify-center gap-2 px-4 py-3 bg-white border border-blue-200 text-blue-700 rounded-xl font-bold hover:bg-blue-50 transition shadow-sm cursor-pointer"
               >
                 <Printer size={18} /> Print
               </button>
               <button
                 onClick={handleDownload}
-                className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-md"
+                className="flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-md cursor-pointer"
               >
                 <Download size={18} /> Save
               </button>

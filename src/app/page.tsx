@@ -19,13 +19,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
               href="/generate"
-              className="min-w-60 sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-200 active:scale-95"
+              className="min-w-60 w-60 sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-blue-200 active:scale-95"
             >
               <QrCode size={22} /> Generate QR
             </Link>
             <Link
               href="/scan"
-              className="min-w-60 sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 hover:border-blue-600 hover:text-blue-600 text-slate-700 rounded-xl font-bold text-lg transition-all active:scale-95"
+              className="min-w-60 w-60 sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 hover:border-blue-600 hover:text-blue-600 text-slate-700 rounded-xl font-bold text-lg transition-all active:scale-95"
             >
               <ScanLine size={22} /> Scan Existing QR
             </Link>
