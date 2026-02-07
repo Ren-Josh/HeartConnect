@@ -7,39 +7,61 @@ import { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Heart Connect",
+  metadataBase: new URL("https://heart-connect-qr.vercel.app"),
+  title: {
+    default: "Heart Connect | Medical ID QR Code System for Schools & Clinics",
+    template: "%s | Heart Connect Medical QR",
+  },
   description:
     "Heart-Connect is a medical identification system designed for schools and clinics. Generate secure QR codes for student or scan existing codes to retrieve personal medical information in seconds.",
   keywords: [
-    "medical ID",
-    "healthcare QR codes",
-    "patient QR",
-    "medical system",
-    "heart",
-    "heart connect",
-    "connect",
-    "qr",
-    "heart qr",
+    "medical ID QR code",
+    "student medical identification",
+    "school medical QR system",
+    "emergency medical QR code",
+    "clinic patient QR system",
+    "digital medical ID",
+    "healthcare QR platform",
+    "secure medical records QR",
+    "medical alert QR code",
   ],
+  authors: [{ name: "Heart Connect" }],
+  creator: "Heart Connect",
+  publisher: "Heart Connect",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   verification: {
     google: "F5uRklSmP7A5vqlKItvPT9c0kiok_l4AbjCucmU_bvc",
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Heart Connect QR",
-    description:
-      "Secure QR codes for student identification in schools and clinics.",
+    type: "website",
     url: "https://heart-connect-qr.vercel.app/",
-    siteName: "Heart Connect QR",
+    title: "Heart Connect – Medical ID QR Codes for Schools & Clinics",
+    description:
+      "Generate and scan medical identification QR codes for students and patients. Designed for schools, clinics, and emergency access.",
+    siteName: "Heart Connect",
     images: [
       {
         url: "/icon.svg",
         width: 1200,
         height: 630,
-        alt: "Heart Connect QR",
+        alt: "Heart Connect Medical ID QR System",
       },
     ],
-    type: "website",
   },
+  category: "healthcare",
 };
 
 export default function RootLayout({
