@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://heart-connect-qr.vercel.app"),
   title: {
-    default: "Heart Connect | Medical ID QR Code System for Schools & Clinics",
+    default: "Heart Connect",
     template: "%s | Heart Connect Medical QR",
   },
   description:
