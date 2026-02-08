@@ -1,5 +1,4 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import {
@@ -13,9 +12,10 @@ import {
 
 export default function ScanQR() {
   const [patientData, setPatientData] = useState<any>(null);
-  const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const searchParams = new URLSearchParams(window.location.search);
     const dataFromUrl = searchParams.get("data");
 
     if (dataFromUrl) {
@@ -26,9 +26,7 @@ export default function ScanQR() {
         console.error("Failed to parse data from URL ", err);
       }
     }
-  }, [searchParams]);
 
-  useEffect(() => {
     const scanner = new Html5QrcodeScanner(
       "reader",
       {
