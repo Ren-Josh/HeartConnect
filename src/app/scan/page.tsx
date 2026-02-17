@@ -194,9 +194,6 @@ export default function ScanQR() {
                     <strong>Age:</strong> {handleAge()}
                   </p>
                   <p>
-                    <strong>Civil Status:</strong> {patientData.civilStatus}
-                  </p>
-                  <p>
                     <strong>Height:</strong> {patientData.height} cm
                   </p>
                   <p>
@@ -204,6 +201,9 @@ export default function ScanQR() {
                   </p>
                   <p>
                     <strong>BMI:</strong> {handleBMI()}
+                  </p>
+                  <p>
+                    <strong>Civil Status:</strong> {patientData.civilStatus}
                   </p>
                 </div>
 
@@ -294,7 +294,7 @@ export default function ScanQR() {
                   </div>
 
                   {patientData.familyHistory.includes("Other") && (
-                    <p className="text-sm mt-2 bg-gray-100 rounded-md border-gray-400 border p-2">
+                    <p className="text-sm mt-2 bg-blue-100 text-blue-700 rounded-md border-blue-400 border p-2">
                       {patientData.familyHistoryOtherDetails}
                     </p>
                   )}
