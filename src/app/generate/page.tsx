@@ -7,15 +7,42 @@ import { HandleGenerateQR } from "../components/handleGenerateQR";
 export default function GenerateQR() {
   const [formData, setFormData] = useState({
     name: "",
-    age: "",
+    birthdate: "",
     blood: "",
     sex: "",
+    menstruation: "",
     street: "",
     barangay: "",
     municipality: "",
     province: "",
     phone: "",
-    medical: "",
+    emergencyContactPerson: "",
+    emergencyContactNumber: "",
+    weight: "",
+    height: "",
+    civilStatus: "",
+    smokingStatus: "",
+    isUsingECigarrete: false,
+
+    drinkingStatus: "",
+
+    physicalActivity: "",
+
+    dietType: "",
+    eatingFrequency: "",
+
+    sleepPattern: "",
+
+    hasMedication: false,
+    medicationDetails: "",
+
+    hasLatexAllergy: false,
+
+    hasOtherAllergies: false,
+    otherAllergyDetails: "",
+
+    familyHistory: [],
+    familyHistoryOtherDetails: "",
   });
   const [qrUrl, setQrUrl] = useState("");
 

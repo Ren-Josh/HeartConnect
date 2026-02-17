@@ -1,18 +1,27 @@
-import {
-  User,
-  Activity,
-  Phone,
-  FileText,
-  VenusAndMars,
-  Cake,
-  MapPin,
-} from "lucide-react";
+import { PersonalInformation } from "./formComponents/personalInformation";
+import { EmergencyContact } from "./formComponents/emergencyContact";
+import { FamilyMedicalHistory } from "./formComponents/familyMedicalHistory";
+import { LifeStye } from "./formComponents/lifestyle";
 
 export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
   const generateQR = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.sex || !formData.blood) {
+    if (
+      !formData.sex ||
+      (formData.sex === "Female" && !formData.menstruation) ||
+      !formData.civilStatus ||
+      !formData.hasMedication ||
+      !formData.hasLatexAllergy ||
+      !formData.hasOtherAllergies ||
+      formData.smokingStatus == "Select Status" ||
+      formData.drinkingStatus == "Select Status" ||
+      formData.physicalActivity == "Select Status" ||
+      formData.dietType == "Select diet type" ||
+      formData.eatingFrequency == "Select eating frequency" ||
+      formData.sleepPattern == "Select sleep duration"
+    ) {
       document.getElementById("error-message")!.classList.remove("hidden");
+      setQrUrl("");
     } else {
       document.getElementById("error-message")!.classList.add("hidden");
 
@@ -20,7 +29,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
       const baseUrl = "https://heart-connect-qr.vercel.app/scan";
       const redirectUrl = `${baseUrl}?data=${encodedData}`;
       setQrUrl(
-        `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&data=${encodeURIComponent(redirectUrl)}`,
+        `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&format=jpeg&data=${encodeURIComponent(redirectUrl)}`,
       );
     }
   };
@@ -28,184 +37,17 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
   return (
     <form
       onSubmit={generateQR}
-      className="w-full md:w-2/3 bg-white p-6 rounded-xl shadow-sm border border-slate-200"
+      className="w-full md:w-2/3 bg-white p-4 md:p-6 rounded-xl shadow-sm border border-slate-200"
     >
       <h2 className="text-2xl font-semibold mb-6 text-blue-800">
         Patient Registration
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label className="text-md font-medium flex items-center gap-2">
-            <User size={16} /> Full Name
-          </label>
-          <input
-            className="w-full border-2 border-gray-400/50 p-2 rounded"
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="text-md flex items-center gap-2 font-medium">
-            <Cake size={16} />
-            Age
-          </label>
-          <input
-            type="number"
-            min={1}
-            className="w-full border-2 border-gray-400/50 p-2 rounded "
-            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-            required
-          />
-        </div>
-        <div className="space-y-2">
-          <label className="text-md font-medium flex items-center gap-2">
-            <Activity size={16} /> Blood Type
-          </label>
-          <select
-            className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
-            onChange={(e) =>
-              setFormData({ ...formData, blood: e.target.value })
-            }
-          >
-            <option className="text-gray-400" selected disabled hidden>
-              Select Blood Type
-            </option>
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>O+</option>
-            <option>O-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-          </select>
-        </div>
-        <div className="space-y-2">
-          <label className="text-md flex items-center gap-2 font-medium">
-            <VenusAndMars size={16} /> Sex
-          </label>
-          <select
-            className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
-            required
-            onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
-          >
-            <option className="text-gray-400" selected disabled hidden>
-              Select Sex
-            </option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-      </div>
+      <PersonalInformation formData={formData} setFormData={setFormData} />
+      <LifeStye formData={formData} setFormData={setFormData} />
+      <EmergencyContact formData={formData} setFormData={setFormData} />
+      <FamilyMedicalHistory formData={formData} setFormData={setFormData} />
 
-      <div className="mt-8 space-y-2">
-        <label className="text-md font-medium flex items-center gap-2">
-          <MapPin size={16} />
-          Address
-        </label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="text-sm font-medium ">
-              House No./Street/Subdivision:
-            </label>
-            <input
-              type="text"
-              className="w-full border-2 border-gray-400/50 p-2 rounded"
-              onChange={(e) =>
-                setFormData({ ...formData, street: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Barangay:</label>
-            <input
-              type="text"
-              className="w-full border-2 border-gray-400/50 p-2 rounded"
-              onChange={(e) =>
-                setFormData({ ...formData, barangay: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Municipality:</label>
-            <input
-              type="text"
-              className="w-full border-2 border-gray-400/50 p-2 rounded"
-              onChange={(e) =>
-                setFormData({ ...formData, municipality: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Province:</label>
-            <input
-              type="text"
-              className="w-full border-2 border-gray-400/50 p-2 rounded"
-              onChange={(e) =>
-                setFormData({ ...formData, province: e.target.value })
-              }
-              required
-            />
-          </div>
-        </div>
-
-        <div className="mt-8 space-y-2">
-          <label className="text-md font-medium flex items-center gap-2">
-            <Phone size={16} />
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            inputMode="numeric"
-            className="w-full border-2 border-gray-400/50 p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
-            placeholder="09XXXXXXXXX or +639XXXXXXXXX"
-            value={formData.phone}
-            onChange={(e) => {
-              let input = e.target.value;
-
-              // Remove any character that isn't a digit or a plus sign
-              let cleaned = input.replace(/[^0-9+]/g, "");
-
-              // Prevent multiple plus signs
-              if ((cleaned.match(/\+/g) || []).length > 1) return;
-
-              if (cleaned.startsWith("+")) {
-                if (cleaned.length >= 3 && !cleaned.startsWith("+63")) {
-                  cleaned = "+63" + cleaned.replace("+", "").replace(/^63/, "");
-                }
-                cleaned = cleaned.slice(0, 13); // +63 + 10 digits
-              } else {
-                if (cleaned.length >= 2 && !cleaned.startsWith("09")) {
-                  cleaned = "09" + cleaned.replace(/^0+/, "").replace(/^9/, "");
-                }
-                cleaned = cleaned.slice(0, 11);
-              }
-
-              setFormData({ ...formData, phone: cleaned });
-            }}
-            required
-          />
-        </div>
-      </div>
-
-      <div className="mt-8 space-y-2">
-        <label className="text-md font-medium flex items-center gap-2">
-          <FileText size={16} /> Past Medical History
-        </label>
-        <textarea
-          className="w-full border-2 border-gray-400/50 p-2 rounded resize-none"
-          rows={3}
-          placeholder="Past illnesses and allergies, N/A if none"
-          onChange={(e) =>
-            setFormData({ ...formData, medical: e.target.value })
-          }
-          required
-        />
-      </div>
       <p className="text-red-500 text-sm hidden" id="error-message">
         Please fill up all the fields before generating QR.
       </p>

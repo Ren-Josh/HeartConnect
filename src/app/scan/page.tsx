@@ -75,6 +75,44 @@ export default function ScanQR() {
     };
   }, []);
 
+  const handleAge = () => {
+    const today = new Date();
+    const birthdate = new Date(patientData.birthdate);
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const monthDifference = today.getMonth() - birthdate.getMonth();
+
+    if (
+      monthDifference < 0 ||
+      (monthDifference === 0 && today.getDate() < birthdate.getDate())
+    ) {
+      age--;
+
+      return age;
+    }
+  };
+
+  const handleBMI = () => {
+    const height = patientData.height / 100;
+    const weight = patientData.weight;
+
+    const BMI = parseFloat((weight / (height * height)).toFixed(2));
+    let remarks = "";
+
+    if (BMI < 18.5) {
+      remarks = "Underweight";
+    } else if (BMI >= 18.5 || BMI <= 24.9) {
+      remarks = "Normal weight";
+    } else if (BMI >= 25 || BMI <= 29.9) {
+      remarks = "Over weight";
+    } else if (BMI > 30) {
+      remarks = "Obese";
+    } else {
+      remarks = "N/A";
+    }
+
+    return BMI + " (" + remarks + ")";
+  };
+
   return (
     <div className="max-w-2xl mx-auto">
       {!patientData && (
@@ -118,54 +156,187 @@ export default function ScanQR() {
 
       {patientData && (
         <div className="gap-5 flex flex-col">
-          <div className="mt-8 bg-white overflow-hidden rounded-2xl border border-blue-200 shadow-xl animate-in fade-in slide-in-from-bottom-4">
-            <div className="bg-blue-600 p-4 text-white flex justify-between items-center">
-              <span className="font-bold uppercase tracking-widest text-sm flex gap-2 items-center">
-                <HeartPulse />
-                Medical Profile
-              </span>
+          <div className="mt-8 bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
+            {/* HEADER */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-5 text-white flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                <HeartPulse className="w-6 h-6" />
+                <div>
+                  <h2 className="font-bold text-lg tracking-wide">
+                    Medical Profile
+                  </h2>
+                  <p className="text-xs opacity-80">
+                    Emergency Identification Record
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <section>
-                <h3 className="text-md font-bold text-slate-400 uppercase mb-2">
+
+            {/* CONTENT */}
+            <div className="px-6">
+              {/* BASIC INFORMATION */}
+              <section className="border-b-2 border-gray-300 py-6">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 ">
                   Basic Information
                 </h3>
-                <p className="text-md">
-                  <strong>Name:</strong> {patientData.name}
+
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <p>
+                    <strong>Name:</strong> {patientData.name}
+                  </p>
+                  <p>
+                    <strong>Sex:</strong> {patientData.sex}
+                  </p>
+                  <p>
+                    <strong>Birthdate:</strong> {patientData.birthdate}
+                  </p>
+                  <p>
+                    <strong>Age:</strong> {handleAge()}
+                  </p>
+                  <p>
+                    <strong>Civil Status:</strong> {patientData.civilStatus}
+                  </p>
+                  <p>
+                    <strong>Height:</strong> {patientData.height} cm
+                  </p>
+                  <p>
+                    <strong>Weight:</strong> {patientData.weight} kg
+                  </p>
+                  <p>
+                    <strong>BMI:</strong> {handleBMI()}
+                  </p>
+                </div>
+
+                {patientData.sex === "Female" && patientData.menstruation && (
+                  <div className="mt-3 text-sm text-pink-600 font-medium">
+                    Menstruation: {patientData.menstruation}
+                  </div>
+                )}
+              </section>
+
+              {/* CONTACT INFORMATION */}
+              <section className="border-b-2 border-gray-300 py-6">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                  Contact Information
+                </h3>
+
+                <div className="space-y-2 text-sm">
+                  <p>
+                    <strong>Address:</strong> {patientData.street},{" "}
+                    {patientData.barangay}, {patientData.municipality},{" "}
+                    {patientData.province}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {patientData.phone}
+                  </p>
+                </div>
+              </section>
+
+              {/* EMERGENCY CONTACT (HIGHLIGHTED) */}
+              <section className="bg-red-50 border border-red-200 p-4 rounded-xl my-6">
+                <h3 className="text-xs font-semibold text-red-600 uppercase tracking-wider mb-2">
+                  Emergency Contact
+                </h3>
+                <p className="text-sm font-medium">
+                  {patientData.emergencyContactPerson}
                 </p>
-                <p className="text-md">
-                  <strong>Age:</strong> {patientData.age}
-                </p>
-                <p className="text-md">
-                  <strong>Sex: </strong>
-                  {patientData.sex}
-                </p>
-                <p className="text-md flex gap-1">
-                  <strong>Blood Type:</strong>{" "}
-                  <span className="text-red-600 ">{patientData.blood}</span>
+                <p className="text-sm text-red-700">
+                  {patientData.emergencyContactNumber}
                 </p>
               </section>
-              <section>
-                <h3 className="text-md font-bold text-slate-400 uppercase mb-2 flex items-center gap-1">
-                  Contact Info
+
+              {/* MEDICAL CONDITIONS */}
+              <section className="border-y-2 border-gray-300 py-6">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <ShieldAlert size={14} />
+                  Medical & Allergy Information
                 </h3>
-                <p className="whitespace-pre-line">
-                  <strong>Address: </strong>
-                  {patientData.street}, {patientData.barangay},{" "}
-                  {patientData.municipality}, {patientData.province}
-                </p>
-                <p className="text-md">
-                  <strong>Phone Number:</strong> {patientData.phone}
-                </p>
+
+                <div className="space-y-2 text-sm">
+                  {patientData.hasMedication && (
+                    <p>
+                      <strong>Active Medication:</strong>{" "}
+                      {patientData.medicationDetails}
+                    </p>
+                  )}
+
+                  {patientData.hasLatexAllergy && (
+                    <p className="text-red-600 font-semibold">
+                      Has Latex Allergy
+                    </p>
+                  )}
+
+                  {patientData.hasOtherAllergies && (
+                    <p>
+                      <strong>Other Allergies:</strong>{" "}
+                      {patientData.otherAllergyDetails}
+                    </p>
+                  )}
+                </div>
               </section>
-              <section className="md:col-span-2 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <h3 className="text-xs font-bold text-blue-800 uppercase mb-2 flex items-center gap-1">
-                  <ShieldAlert size={12} /> Medical History & Allergies
+
+              {/* FAMILY HISTORY */}
+              {patientData.familyHistory?.length > 0 && (
+                <section className="border-b-2 border-gray-300 py-6">
+                  <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                    Family History
+                  </h3>
+
+                  <div className="flex flex-wrap gap-2">
+                    {patientData.familyHistory.map((item: any, index: any) => (
+                      <span
+                        key={index}
+                        className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full"
+                      >
+                        {item.replace("_", " ")}
+                      </span>
+                    ))}
+                  </div>
+
+                  {patientData.familyHistory.includes("Other") && (
+                    <p className="text-sm mt-2 bg-gray-100 rounded-md border-gray-400 border p-2">
+                      {patientData.familyHistoryOtherDetails}
+                    </p>
+                  )}
+                </section>
+              )}
+
+              {/* LIFESTYLE SUMMARY */}
+              <section className="py-6">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                  Lifestyle Overview
                 </h3>
-                <p className="text-slate-800">{patientData.medical}</p>
+
+                <div className="grid md:grid-cols-2 gap-3 text-sm">
+                  <p>
+                    <strong>Smoking:</strong> {patientData.smokingStatus}
+                  </p>
+                  <p>
+                    <strong>E-Cigarette:</strong>{" "}
+                    {patientData.isUsingECigarrete ? "Yes" : "No"}
+                  </p>
+                  <p>
+                    <strong>Alcohol:</strong> {patientData.drinkingStatus}
+                  </p>
+                  <p>
+                    <strong>Physical Activity:</strong>{" "}
+                    {patientData.physicalActivity}
+                  </p>
+                  <p>
+                    <strong>Diet:</strong> {patientData.dietType}
+                  </p>
+                  <p>
+                    <strong>Eating Frequency:</strong>{" "}
+                    {patientData.eatingFrequency}
+                  </p>
+                  <p>
+                    <strong>Sleep:</strong> {patientData.sleepPattern}
+                  </p>
+                </div>
               </section>
             </div>
           </div>
+
           <button
             onClick={() => window.location.reload()}
             className="w-fit self-center flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-md transition-all shadow-lg hover:shadow-blue-200 active:scale-95 cursor-pointer"
