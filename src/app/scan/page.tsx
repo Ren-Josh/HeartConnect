@@ -6,7 +6,6 @@ import {
   Camera,
   RefreshCw,
   ScanLine,
-  ShieldAlert,
   HeartPulse,
 } from "lucide-react";
 
@@ -99,18 +98,18 @@ export default function ScanQR() {
     let remarks = "";
 
     if (BMI < 18.5) {
-      remarks = "Underweight";
+      remarks = `Underweight`;
     } else if (BMI >= 18.5 || BMI <= 24.9) {
-      remarks = "Normal weight";
+      remarks = `Normal weight`;
     } else if (BMI >= 25 || BMI <= 29.9) {
-      remarks = "Over weight";
+      remarks = `Over weight`;
     } else if (BMI > 30) {
-      remarks = "Obese";
+      remarks = `Obese`;
     } else {
       remarks = "N/A";
     }
 
-    return BMI + " (" + remarks + ")";
+    return BMI + ` (${remarks})`;
   };
 
   return (
@@ -248,7 +247,6 @@ export default function ScanQR() {
               {/* MEDICAL CONDITIONS */}
               <section className="border-y-2 border-gray-300 py-6">
                 <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <ShieldAlert size={14} />
                   Medical & Allergy Information
                 </h3>
 
@@ -279,18 +277,24 @@ export default function ScanQR() {
               {patientData.familyHistory?.length > 0 && (
                 <section className="border-b-2 border-gray-300 py-6">
                   <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
-                    Family History
+                    Family Medical History
                   </h3>
 
                   <div className="flex flex-wrap gap-2">
-                    {patientData.familyHistory.map((item: any, index: any) => (
-                      <span
-                        key={index}
-                        className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full"
-                      >
-                        {item.replace("_", " ")}
-                      </span>
-                    ))}
+                    {[...patientData.familyHistory]
+                      .sort((a, b) => {
+                        if (a === "Other") return 1;
+                        if (b === "Other") return -1;
+                        return 0;
+                      })
+                      .map((item: any, index: any) => (
+                        <span
+                          key={index}
+                          className="bg-blue-100 text-blue-700 text-xs px-3 py-1 rounded-full"
+                        >
+                          {item.replace("_", " ")}
+                        </span>
+                      ))}
                   </div>
 
                   {patientData.familyHistory.includes("Other") && (
