@@ -330,7 +330,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 </div>
               </div>
 
-              {formData.hasOtherAllergies == true && (
+              {formData.hasOtherAllergies == "yes" && (
                 <div>
                   <label className="text-sm font-medium ">
                     Please specify:
