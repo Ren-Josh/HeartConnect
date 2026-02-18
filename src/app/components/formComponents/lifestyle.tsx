@@ -31,39 +31,42 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
             </select>
           </div>
 
-          <div className="space-x-5 space-y-3">
-            <label className="text-sm flex items-center font-medium">
-              Used/Using E-Cigarrete/Vape
-            </label>
-            <label className="cursor-pointer space-x-2">
-              <input
-                type="radio"
-                name="usingECig"
-                value={1}
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    isUsingECigarrete: e.target.value,
-                  });
-                }}
-              />
-              <span>Yes</span>
-            </label>
-            <label className="cursor-pointer space-x-2">
-              <input
-                type="radio"
-                name="usingECig"
-                value={0}
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    isUsingECigarrete: e.target.value,
-                  });
-                }}
-              />
-              <span>No</span>
-            </label>
-          </div>
+          {(formData.smokingStatus == "Smoking" ||
+            formData.smokingStatus == "Former Smoker") && (
+            <div className="space-x-5 space-y-3">
+              <label className="text-sm flex items-center font-medium">
+                Used/Using E-Cigarrete/Vape
+              </label>
+              <label className="cursor-pointer space-x-2">
+                <input
+                  type="radio"
+                  name="usingECig"
+                  value={1}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      isUsingECigarrete: e.target.value,
+                    });
+                  }}
+                />
+                <span>Yes</span>
+              </label>
+              <label className="cursor-pointer space-x-2">
+                <input
+                  type="radio"
+                  name="usingECig"
+                  value={0}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      isUsingECigarrete: e.target.value,
+                    });
+                  }}
+                />
+                <span>No</span>
+              </label>
+            </div>
+          )}
 
           <div className="md:col-span-2">
             <label className="text-sm flex items-center gap-2 font-medium">

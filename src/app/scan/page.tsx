@@ -8,6 +8,7 @@ import {
   ScanLine,
   HeartPulse,
 } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default function ScanQR() {
   const [patientData, setPatientData] = useState<any>(null);
@@ -21,6 +22,7 @@ export default function ScanQR() {
       try {
         const decodedData = JSON.parse(decodeURIComponent(dataFromUrl));
         setPatientData(decodedData);
+        redirect("/scan");
       } catch (err) {
         console.error("Failed to parse data from URL ", err);
       }
@@ -30,7 +32,7 @@ export default function ScanQR() {
       "reader",
       {
         fps: 10,
-        qrbox: { width: 250, height: 250 },
+        qrbox: { width: 500, height: 500 },
         aspectRatio: 1.0,
         rememberLastUsedCamera: false,
       },
@@ -87,7 +89,7 @@ export default function ScanQR() {
       age--;
     }
 
-    if (age < 0) return "Invalid Age";
+    if (age < 0) return "Birthdate exceeds today's date";
     else return age;
   };
 
@@ -321,11 +323,11 @@ export default function ScanQR() {
                     {patientData.isUsingECigarrete ? "Yes" : "No"}
                   </p>
                   <p>
-                    <strong>Alcohol:</strong> {patientData.drinkingStatus}
-                  </p>
-                  <p>
                     <strong>Physical Activity:</strong>{" "}
                     {patientData.physicalActivity}
+                  </p>
+                  <p>
+                    <strong>Alcohol:</strong> {patientData.drinkingStatus}
                   </p>
                   <p>
                     <strong>Diet:</strong> {patientData.dietType}
