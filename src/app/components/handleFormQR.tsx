@@ -29,7 +29,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
       const baseUrl = "https://heart-connect-qr.vercel.app/scan";
       const redirectUrl = `${baseUrl}?data=${encodedData}`;
       setQrUrl(
-        `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&format=jpeg&data=${encodeURIComponent(redirectUrl)}`,
+        `https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&format=png&data=${encodeURIComponent(redirectUrl)}`,
       );
     }
   };
