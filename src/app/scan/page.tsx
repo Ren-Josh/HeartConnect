@@ -8,7 +8,6 @@ import {
   ScanLine,
   HeartPulse,
 } from "lucide-react";
-import { redirect } from "next/navigation";
 
 export default function ScanQR() {
   const [patientData, setPatientData] = useState<any>(null);
@@ -22,7 +21,6 @@ export default function ScanQR() {
       try {
         const decodedData = JSON.parse(decodeURIComponent(dataFromUrl));
         setPatientData(decodedData);
-        redirect("/scan");
       } catch (err) {
         console.error("Failed to parse data from URL ", err);
       }
@@ -31,10 +29,17 @@ export default function ScanQR() {
     const scanner = new Html5QrcodeScanner(
       "reader",
       {
-        fps: 10,
-        qrbox: { width: 500, height: 500 },
+        fps: 20,
+        qrbox: (w, h) => {
+          const minEdge = Math.min(w, h);
+          const size = Math.floor(minEdge * 1);
+          return { width: size, height: size };
+        },
         aspectRatio: 1.0,
         rememberLastUsedCamera: false,
+        videoConstraints: {
+          facingMode: { ideal: "environment" },
+        },
       },
       false,
     );
@@ -160,7 +165,7 @@ export default function ScanQR() {
         <div className="gap-5 flex flex-col">
           <div className="mt-8 bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
             {/* HEADER */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-5 text-white flex justify-between items-center">
+            <div className="bg-linear-to-r from-blue-600 to-blue-700 px-6 py-5 text-white flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <HeartPulse className="w-6 h-6" />
                 <div>
