@@ -275,7 +275,9 @@ export default function ScanQR() {
                       Has Latex Allergy
                     </p>
                   ) : (
-                    <p>No Latex Allergy</p>
+                    <p>
+                      <strong>No Latex Allergy</strong>
+                    </p>
                   )}
 
                   {patientData.hasOtherAllergies == "yes" ? (
