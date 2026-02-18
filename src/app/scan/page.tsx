@@ -85,9 +85,10 @@ export default function ScanQR() {
       (monthDifference === 0 && today.getDate() < birthdate.getDate())
     ) {
       age--;
-
-      return age;
     }
+
+    if (age < 0) return "Invalid Age";
+    else return age;
   };
 
   const handleBMI = () => {
