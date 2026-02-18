@@ -1,3 +1,4 @@
+"use client";
 import { formDataInterface } from "@/app/interface/formData";
 import {
   User,
@@ -9,11 +10,48 @@ import {
   Ruler,
   Weight,
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function PersonalInformation({
   formData,
   setFormData,
 }: formDataInterface) {
+  const [provinces, setProvinces] = useState([]);
+  const [municipalities, setMunicipalities] = useState([]);
+  const [barangays, setBarangays] = useState([]);
+
+  const [selectedProvinceCode, setSelectedProvinceCode] = useState("");
+  const [selectedMunicipalityCode, setSelectedMunicipalityCode] = useState("");
+
+  useEffect(() => {
+    fetch("https://psgc.gitlab.io/api/provinces/")
+      .then((res) => res.json())
+      .then((data) => setProvinces(data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    if (!selectedProvinceCode) return;
+
+    fetch(
+      `https://psgc.gitlab.io/api/provinces/${selectedProvinceCode}/cities-municipalities/`,
+    )
+      .then((res) => res.json())
+      .then((data) => setMunicipalities(data))
+      .catch((err) => console.error(err));
+  }, [selectedProvinceCode]);
+
+  useEffect(() => {
+    if (!selectedMunicipalityCode) return;
+
+    fetch(
+      `https://psgc.gitlab.io/api/cities-municipalities/${selectedMunicipalityCode}/barangays/`,
+    )
+      .then((res) => res.json())
+      .then((data) => setBarangays(data))
+      .catch((err) => console.error(err));
+  }, [selectedMunicipalityCode]);
+
   return (
     <>
       <div className="pb-4 border-b-2 border-gray-400 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -23,6 +61,7 @@ export function PersonalInformation({
           </label>
           <input
             className="w-full border-2 border-gray-400/50 p-2 rounded"
+            placeholder="e.g. Juan C. Dela Cruz"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
           />
@@ -220,6 +259,74 @@ export function PersonalInformation({
           </label>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
+              <label className="text-sm font-medium">Province:</label>
+              <select
+                className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
+                value={selectedProvinceCode}
+                onChange={(e) => {
+                  setSelectedProvinceCode(e.target.value);
+                  setSelectedMunicipalityCode("");
+                  setBarangays([]);
+                  setFormData({
+                    ...formData,
+                    province: e.target.selectedOptions[0].text,
+                  });
+                }}
+              >
+                <option value="">Select Province</option>
+                {provinces.map((province: any) => (
+                  <option key={province.code} value={province.code}>
+                    {province.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Municipality:</label>
+              <select
+                className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
+                value={selectedMunicipalityCode}
+                onChange={(e) => {
+                  setSelectedMunicipalityCode(e.target.value);
+                  setFormData({
+                    ...formData,
+                    municipality: e.target.selectedOptions[0].text,
+                  });
+                }}
+                disabled={!selectedProvinceCode}
+              >
+                <option value="">Select Municipality</option>
+                {municipalities.map((mun: any) => (
+                  <option key={mun.code} value={mun.code}>
+                    {mun.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium">Barangay:</label>
+              <select
+                className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    barangay: e.target.selectedOptions[0].text,
+                  })
+                }
+                disabled={!selectedMunicipalityCode}
+              >
+                <option value="">Select Barangay</option>
+                {barangays.map((brgy: any) => (
+                  <option key={brgy.code} value={brgy.code}>
+                    {brgy.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
               <label className="text-sm font-medium ">
                 House No./Street/Subdivision:
               </label>
@@ -228,39 +335,6 @@ export function PersonalInformation({
                 className="w-full border-2 border-gray-400/50 p-2 rounded"
                 onChange={(e) =>
                   setFormData({ ...formData, street: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium">Barangay:</label>
-              <input
-                type="text"
-                className="w-full border-2 border-gray-400/50 p-2 rounded"
-                onChange={(e) =>
-                  setFormData({ ...formData, barangay: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium">Municipality:</label>
-              <input
-                type="text"
-                className="w-full border-2 border-gray-400/50 p-2 rounded"
-                onChange={(e) =>
-                  setFormData({ ...formData, municipality: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <label className="text-sm font-medium">Province:</label>
-              <input
-                type="text"
-                className="w-full border-2 border-gray-400/50 p-2 rounded"
-                onChange={(e) =>
-                  setFormData({ ...formData, province: e.target.value })
                 }
                 required
               />

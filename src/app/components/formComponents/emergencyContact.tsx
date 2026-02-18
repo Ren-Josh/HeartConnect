@@ -18,6 +18,7 @@ export function EmergencyContact({ formData, setFormData }: formDataInterface) {
             </label>
             <input
               type="text"
+              placeholder="e.g. Maria C. Dela Cruz"
               className="w-full border-2 border-gray-400/50 p-2 rounded"
               onChange={(e) =>
                 setFormData({
