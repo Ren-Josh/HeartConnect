@@ -99,9 +99,9 @@ export default function ScanQR() {
 
     if (BMI < 18.5) {
       remarks = `Underweight`;
-    } else if (BMI >= 18.5 || BMI <= 24.9) {
+    } else if (BMI >= 18.5 && BMI <= 24.9) {
       remarks = `Normal weight`;
-    } else if (BMI >= 25 || BMI <= 29.9) {
+    } else if (BMI >= 25 && BMI <= 29.9) {
       remarks = `Over weight`;
     } else if (BMI > 30) {
       remarks = `Obese`;
