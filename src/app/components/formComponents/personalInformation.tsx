@@ -58,7 +58,7 @@ export function PersonalInformation({
               setFormData({ ...formData, sex: e.target.value });
             }}
           >
-            <option className="text-gray-400" selected disabled hidden>
+            <option className="text-gray-400" selected hidden>
               Select Sex
             </option>
             <option value="Male">Male</option>

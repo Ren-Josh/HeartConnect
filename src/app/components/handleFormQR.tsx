@@ -7,7 +7,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
   const generateQR = (e: React.FormEvent) => {
     e.preventDefault();
     if (
-      !formData.sex ||
+      formData.sex == "Select Sex" ||
       (formData.sex === "Female" && !formData.menstruation) ||
       !formData.civilStatus ||
       !formData.hasMedication ||
