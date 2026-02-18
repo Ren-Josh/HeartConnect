@@ -33,12 +33,12 @@ export default function GenerateQR() {
 
     sleepPattern: "",
 
-    hasMedication: false,
+    hasMedication: "",
     medicationDetails: "",
 
-    hasLatexAllergy: false,
+    hasLatexAllergy: "",
 
-    hasOtherAllergies: false,
+    hasOtherAllergies: "",
     otherAllergyDetails: "",
 
     familyHistory: [],

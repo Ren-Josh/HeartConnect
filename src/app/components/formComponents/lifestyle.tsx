@@ -204,7 +204,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasMedication"
-                      value={1}
+                      value={"yes"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -218,7 +218,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasMedication"
-                      value={0}
+                      value={"no"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -231,7 +231,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 </div>
               </div>
 
-              {formData.hasMedication == true && (
+              {formData.hasMedication == "yes" && (
                 <div>
                   <label className="text-sm font-medium ">
                     Please specify:
@@ -263,7 +263,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasLatexAllergy"
-                      value={1}
+                      value={"yes"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -277,7 +277,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasLatexAllergy"
-                      value={0}
+                      value={"no"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -303,7 +303,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasOtherAllergies"
-                      value={1}
+                      value={"yes"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -317,7 +317,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     <input
                       type="radio"
                       name="hasOtherAllergies"
-                      value={0}
+                      value={"no"}
                       onChange={(e) =>
                         setFormData({
                           ...formData,

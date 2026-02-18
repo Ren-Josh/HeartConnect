@@ -259,23 +259,33 @@ export default function ScanQR() {
                 </h3>
 
                 <div className="space-y-2 text-sm">
-                  {patientData.hasMedication && (
+                  {patientData.hasMedication == "yes" ? (
                     <p>
                       <strong>Active Medication:</strong>{" "}
                       {patientData.medicationDetails}
                     </p>
-                  )}
-
-                  {patientData.hasLatexAllergy && (
-                    <p className="text-red-600 font-semibold">
-                      Has Latex Allergy
+                  ) : (
+                    <p>
+                      <strong>No Active Medication:</strong>
                     </p>
                   )}
 
-                  {patientData.hasOtherAllergies && (
+                  {patientData.hasLatexAllergy == "yes" ? (
+                    <p className="text-red-600 font-semibold">
+                      Has Latex Allergy
+                    </p>
+                  ) : (
+                    <p>No Latex Allergy</p>
+                  )}
+
+                  {patientData.hasOtherAllergies == "yes" ? (
                     <p>
                       <strong>Other Allergies:</strong>{" "}
                       {patientData.otherAllergyDetails}
+                    </p>
+                  ) : (
+                    <p>
+                      <strong>No Other Allergies</strong>
                     </p>
                   )}
                 </div>
