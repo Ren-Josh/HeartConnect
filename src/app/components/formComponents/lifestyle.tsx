@@ -313,7 +313,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     />
                     <span>Yes</span>
                   </label>
-                  <label className="cursor-pointer">
+                  <label className="cursor-pointer space-x-2">
                     <input
                       type="radio"
                       name="hasOtherAllergies"
