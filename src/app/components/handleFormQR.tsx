@@ -13,12 +13,12 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
       !formData.hasMedication ||
       !formData.hasLatexAllergy ||
       !formData.hasOtherAllergies ||
-      formData.smokingStatus == "Select Status" ||
-      formData.drinkingStatus == "Select Status" ||
-      formData.physicalActivity == "Select Status" ||
-      formData.dietType == "Select diet type" ||
-      formData.eatingFrequency == "Select eating frequency" ||
-      formData.sleepPattern == "Select sleep duration"
+      formData.smokingStatus == "" ||
+      formData.drinkingStatus == "" ||
+      formData.physicalActivity == "" ||
+      formData.dietType == "" ||
+      formData.eatingFrequency == "" ||
+      formData.sleepPattern == ""
     ) {
       document.getElementById("error-message")!.classList.remove("hidden");
       setQrUrl("");

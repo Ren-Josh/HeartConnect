@@ -22,7 +22,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 setFormData({ ...formData, smokingStatus: e.target.value });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select Status
               </option>
               <option>Never Smoked</option>
@@ -83,7 +83,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select Status
               </option>
               <option>Does not drink</option>
@@ -108,7 +108,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select Status
               </option>
               <option>Sedentary (little to no exercise)</option>
@@ -134,7 +134,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select diet type
               </option>
               <option>Balanced / Regular diet</option>
@@ -158,7 +158,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select eating frequency
               </option>
               <option>1 meal per day</option>
@@ -184,7 +184,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 });
               }}
             >
-              <option selected hidden>
+              <option value="" selected hidden>
                 Select sleep duration
               </option>
               <option>Less than 5 hours</option>
