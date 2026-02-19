@@ -23,7 +23,7 @@ export function EmergencyContact({ formData, setFormData }: formDataInterface) {
               onChange={(e) =>
                 setFormData({
                   ...formData,
-                  emergencyContactPerson: e.target.value,
+                  ecp: e.target.value,
                 })
               }
               required
@@ -63,7 +63,7 @@ export function EmergencyContact({ formData, setFormData }: formDataInterface) {
                   cleaned = cleaned.slice(0, 11);
                 }
 
-                setFormData({ ...formData, emergencyContactNumber: cleaned });
+                setFormData({ ...formData, ecn: cleaned });
               }}
               required
             />

@@ -95,7 +95,7 @@ export default function ScanQR() {
 
   const handleAge = () => {
     const today = new Date();
-    const birthdate = new Date(patientData.birthdate);
+    const birthdate = new Date(patientData.bd);
     let age = today.getFullYear() - birthdate.getFullYear();
     const monthDifference = today.getMonth() - birthdate.getMonth();
 
@@ -111,8 +111,8 @@ export default function ScanQR() {
   };
 
   const handleBMI = () => {
-    const height = patientData.height / 100;
-    const weight = patientData.weight;
+    const height = patientData.h / 100;
+    const weight = patientData.w;
 
     const BMI = parseFloat((weight / (height * height)).toFixed(2));
     let remarks = "";
@@ -192,7 +192,7 @@ export default function ScanQR() {
 
               {/* Blood Type Highlight */}
               <div className="bg-white text-red-600 font-extrabold px-4 py-2 rounded-xl text-lg shadow">
-                Blood Type: {patientData.blood || "N/A"}
+                Blood Type: {patientData.bt || "N/A"}
               </div>
             </div>
 
@@ -206,28 +206,28 @@ export default function ScanQR() {
 
                 <div className="grid md:grid-cols-2 gap-4 text-sm">
                   <p>
-                    <strong>Name:</strong> {patientData.name}
+                    <strong>Name:</strong> {patientData.n}
                   </p>
                   <p>
                     <strong>Sex:</strong> {patientData.sex}
                   </p>
                   <p>
-                    <strong>Birthdate:</strong> {patientData.birthdate}
+                    <strong>Birthdate:</strong> {patientData.bd}
                   </p>
                   <p>
                     <strong>Age:</strong> {handleAge()}
                   </p>
                   <p>
-                    <strong>Height:</strong> {patientData.height} cm
+                    <strong>Height:</strong> {patientData.h} cm
                   </p>
                   <p>
-                    <strong>Weight:</strong> {patientData.weight} kg
+                    <strong>Weight:</strong> {patientData.w} kg
                   </p>
                   <p>
                     <strong>BMI:</strong> {handleBMI()}
                   </p>
                   <p>
-                    <strong>Civil Status:</strong> {patientData.civilStatus}
+                    <strong>Civil Status:</strong> {patientData.cs}
                   </p>
                   <p>
                     <strong>Religion:</strong> {patientData.religion || "N/A"}
@@ -236,7 +236,7 @@ export default function ScanQR() {
 
                 {patientData.sex === "Female" && patientData.menstruation && (
                   <div className="mt-3 text-sm text-pink-600 font-medium">
-                    Menstruation: {patientData.menstruation}
+                    Menstruation: {patientData.mens}
                   </div>
                 )}
               </section>
@@ -264,12 +264,8 @@ export default function ScanQR() {
                 <h3 className="text-xs font-semibold text-red-600 uppercase tracking-wider mb-2">
                   Emergency Contact
                 </h3>
-                <p className="text-sm font-medium">
-                  {patientData.emergencyContactPerson}
-                </p>
-                <p className="text-sm text-red-700">
-                  {patientData.emergencyContactNumber}
-                </p>
+                <p className="text-sm font-medium">{patientData.ecp}</p>
+                <p className="text-sm text-red-700">{patientData.ecn}</p>
               </section>
 
               {/* MEDICAL CONDITIONS */}
@@ -279,10 +275,9 @@ export default function ScanQR() {
                 </h3>
 
                 <div className="space-y-2 text-sm">
-                  {patientData.hasMedication == "yes" ? (
+                  {patientData.hm == "yes" ? (
                     <p>
-                      <strong>Active Medication:</strong>{" "}
-                      {patientData.medicationDetails}
+                      <strong>Active Medication:</strong> {patientData.md}
                     </p>
                   ) : (
                     <p>
@@ -290,7 +285,7 @@ export default function ScanQR() {
                     </p>
                   )}
 
-                  {patientData.hasLatexAllergy == "yes" ? (
+                  {patientData.hla == "yes" ? (
                     <p className="text-red-600 font-semibold">
                       Has Latex Allergy
                     </p>
@@ -300,10 +295,9 @@ export default function ScanQR() {
                     </p>
                   )}
 
-                  {patientData.hasOtherAllergies == "yes" ? (
+                  {patientData.hoa == "yes" ? (
                     <p>
-                      <strong>Other Allergies:</strong>{" "}
-                      {patientData.otherAllergyDetails}
+                      <strong>Other Allergies:</strong> {patientData.oad}
                     </p>
                   ) : (
                     <p>
@@ -314,14 +308,14 @@ export default function ScanQR() {
               </section>
 
               {/* FAMILY HISTORY */}
-              {patientData.familyHistory?.length > 0 && (
+              {patientData.famh?.length > 0 && (
                 <section className="border-b-2 border-gray-300 py-6">
                   <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
                     Family Medical History
                   </h3>
 
                   <div className="flex flex-wrap gap-2">
-                    {[...patientData.familyHistory]
+                    {[...patientData.famh]
                       .sort((a, b) => {
                         if (a === "Other") return 1;
                         if (b === "Other") return -1;
@@ -337,9 +331,9 @@ export default function ScanQR() {
                       ))}
                   </div>
 
-                  {patientData.familyHistory.includes("Other") && (
+                  {patientData.famh.includes("Other") && (
                     <p className="text-sm mt-2 bg-blue-100 text-blue-700 rounded-md border-blue-400 border p-2">
-                      {patientData.familyHistoryOtherDetails}
+                      {patientData.famhod}
                     </p>
                   )}
                 </section>
@@ -353,28 +347,26 @@ export default function ScanQR() {
 
                 <div className="grid md:grid-cols-2 gap-3 text-sm">
                   <p>
-                    <strong>Smoking:</strong> {patientData.smokingStatus}
+                    <strong>Smoking:</strong> {patientData.ss}
                   </p>
                   <p>
                     <strong>E-Cigarette:</strong>{" "}
-                    {patientData.isUsingECigarrete ? "Yes" : "No"}
+                    {patientData.eCig ? "Yes" : "No"}
                   </p>
                   <p>
-                    <strong>Physical Activity:</strong>{" "}
-                    {patientData.physicalActivity}
+                    <strong>Physical Activity:</strong> {patientData.pa}
                   </p>
                   <p>
-                    <strong>Alcohol:</strong> {patientData.drinkingStatus}
+                    <strong>Alcohol:</strong> {patientData.ds}
                   </p>
                   <p>
-                    <strong>Diet:</strong> {patientData.dietType}
+                    <strong>Diet:</strong> {patientData.dt}
                   </p>
                   <p>
-                    <strong>Eating Frequency:</strong>{" "}
-                    {patientData.eatingFrequency}
+                    <strong>Eating Frequency:</strong> {patientData.ef}
                   </p>
                   <p>
-                    <strong>Sleep:</strong> {patientData.sleepPattern}
+                    <strong>Sleep:</strong> {patientData.sp}
                   </p>
                 </div>
               </section>

@@ -7,13 +7,13 @@ export function FamilyMedicalHistory({
 }: formDataInterface) {
   const handleCheckBox = (val: String) => {
     setFormData((prev: any) => {
-      const alreadySelected = prev.familyHistory.includes(val);
+      const alreadySelected = prev.famh.includes(val);
 
       return {
         ...prev,
-        familyHistory: alreadySelected
-          ? prev.familyHistory.filter((item: any) => item !== val)
-          : [...prev.familyHistory, val],
+        famh: alreadySelected
+          ? prev.famh.filter((item: any) => item !== val)
+          : [...prev.famh, val],
       };
     });
   };
@@ -98,7 +98,7 @@ export function FamilyMedicalHistory({
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      familyHistoryOtherDetails: e.target.value,
+                      famhod: e.target.value,
                     })
                   }
                   required

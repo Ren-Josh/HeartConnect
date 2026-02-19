@@ -17,9 +17,9 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
             <select
               className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
               required
-              value={formData.smokingStatus}
+              value={formData.ss}
               onChange={(e) => {
-                setFormData({ ...formData, smokingStatus: e.target.value });
+                setFormData({ ...formData, ss: e.target.value });
               }}
             >
               <option value="" selected hidden>
@@ -45,7 +45,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      isUsingECigarrete: e.target.value,
+                      eCig: e.target.value,
                     });
                   }}
                 />
@@ -59,7 +59,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                   onChange={(e) => {
                     setFormData({
                       ...formData,
-                      isUsingECigarrete: e.target.value,
+                      eCig: e.target.value,
                     });
                   }}
                 />
@@ -75,11 +75,11 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
             <select
               className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
               required
-              value={formData.drinkingStatus}
+              value={formData.ds}
               onChange={(e) => {
                 setFormData({
                   ...formData,
-                  drinkingStatus: e.target.value,
+                  ds: e.target.value,
                 });
               }}
             >
@@ -104,7 +104,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
               onChange={(e) => {
                 setFormData({
                   ...formData,
-                  physicalActivity: e.target.value,
+                  pa: e.target.value,
                 });
               }}
             >
@@ -130,7 +130,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
               onChange={(e) => {
                 setFormData({
                   ...formData,
-                  dietType: e.target.value,
+                  dt: e.target.value,
                 });
               }}
             >
@@ -154,7 +154,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
               onChange={(e) => {
                 setFormData({
                   ...formData,
-                  eatingFrequency: e.target.value,
+                  ef: e.target.value,
                 });
               }}
             >
@@ -180,7 +180,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
               onChange={(e) => {
                 setFormData({
                   ...formData,
-                  sleepPattern: e.target.value,
+                  sp: e.target.value,
                 });
               }}
             >
@@ -208,7 +208,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasMedication: e.target.value,
+                          hm: e.target.value,
                         })
                       }
                     />
@@ -222,7 +222,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasMedication: e.target.value,
+                          hm: e.target.value,
                         })
                       }
                     />
@@ -242,7 +242,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        medicationDetails: e.target.value,
+                        md: e.target.value,
                       })
                     }
                     required
@@ -267,7 +267,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasLatexAllergy: e.target.value,
+                          hla: e.target.value,
                         })
                       }
                     />
@@ -281,7 +281,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasLatexAllergy: e.target.value,
+                          hla: e.target.value,
                         })
                       }
                     />
@@ -307,7 +307,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasOtherAllergies: e.target.value,
+                          hoa: e.target.value,
                         })
                       }
                     />
@@ -321,7 +321,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          hasOtherAllergies: e.target.value,
+                          hoa: e.target.value,
                         })
                       }
                     />
@@ -341,7 +341,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        otherAllergyDetails: e.target.value,
+                        oad: e.target.value,
                       })
                     }
                     required

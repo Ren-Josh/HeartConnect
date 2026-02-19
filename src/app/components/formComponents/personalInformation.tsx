@@ -64,7 +64,7 @@ export function PersonalInformation({
           <input
             className="w-full border-2 border-gray-400/50 p-2 rounded"
             placeholder="e.g. Juan C. Dela Cruz"
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, n: e.target.value })}
             required
           />
         </div>
@@ -78,9 +78,7 @@ export function PersonalInformation({
             type="date"
             min={1}
             className="w-full border-2 border-gray-400/50 p-2 rounded "
-            onChange={(e) =>
-              setFormData({ ...formData, birthdate: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, bd: e.target.value })}
             required
           />
         </div>
@@ -148,12 +146,10 @@ export function PersonalInformation({
           <input
             className="w-full border-2 border-gray-400/50 p-2 rounded"
             type="number"
-            value={formData.height}
+            value={formData.h}
             min={0}
             placeholder={`000 centimeters`}
-            onChange={(e) =>
-              setFormData({ ...formData, height: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, h: e.target.value })}
             required
           />
         </div>
@@ -165,12 +161,10 @@ export function PersonalInformation({
           <input
             className="w-full border-2 border-gray-400/50 p-2 rounded"
             type="number"
-            value={formData.weight}
+            value={formData.w}
             min={0}
             placeholder={`0.00 kilograms`}
-            onChange={(e) =>
-              setFormData({ ...formData, weight: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, w: e.target.value })}
             required
           />
         </div>
@@ -186,7 +180,7 @@ export function PersonalInformation({
                 name="civilStatus"
                 value="Single"
                 onChange={(e) => {
-                  setFormData({ ...formData, civilStatus: e.target.value });
+                  setFormData({ ...formData, cs: e.target.value });
                 }}
               />
               <span>Single</span>
@@ -197,7 +191,7 @@ export function PersonalInformation({
                 name="civilStatus"
                 value="Married"
                 onChange={(e) => {
-                  setFormData({ ...formData, civilStatus: e.target.value });
+                  setFormData({ ...formData, cs: e.target.value });
                 }}
               />
               <span>Married</span>
@@ -208,7 +202,7 @@ export function PersonalInformation({
                 name="civilStatus"
                 value="Widowed"
                 onChange={(e) => {
-                  setFormData({ ...formData, civilStatus: e.target.value });
+                  setFormData({ ...formData, cs: e.target.value });
                 }}
               />
               <span>Widowed</span>
@@ -222,9 +216,7 @@ export function PersonalInformation({
           </label>
           <select
             className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
-            onChange={(e) =>
-              setFormData({ ...formData, blood: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, bt: e.target.value })}
           >
             <option className="text-gray-400" selected disabled hidden>
               Select Blood Type
@@ -331,7 +323,7 @@ export function PersonalInformation({
                   setSelectedMunicipalityCode(e.target.value);
                   setFormData({
                     ...formData,
-                    municipality: e.target.selectedOptions[0].text,
+                    muni: e.target.selectedOptions[0].text,
                   });
                 }}
                 disabled={!selectedProvinceCode}
@@ -352,7 +344,7 @@ export function PersonalInformation({
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    barangay: e.target.selectedOptions[0].text,
+                    brgy: e.target.selectedOptions[0].text,
                   })
                 }
                 disabled={!selectedMunicipalityCode}
@@ -374,7 +366,7 @@ export function PersonalInformation({
                 type="text"
                 className="w-full border-2 border-gray-400/50 p-2 rounded"
                 onChange={(e) =>
-                  setFormData({ ...formData, street: e.target.value })
+                  setFormData({ ...formData, st: e.target.value })
                 }
                 required
               />
