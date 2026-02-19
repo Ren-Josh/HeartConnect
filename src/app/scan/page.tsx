@@ -30,11 +30,6 @@ export default function ScanQR() {
       "reader",
       {
         fps: 20,
-        qrbox: (w, h) => {
-          const minEdge = Math.min(w, h);
-          const size = Math.floor(minEdge * 1);
-          return { width: size, height: size };
-        },
         aspectRatio: 1.0,
         rememberLastUsedCamera: false,
         videoConstraints: {
@@ -44,29 +39,46 @@ export default function ScanQR() {
       false,
     );
 
-    const onScanSuccess = (decodedText: string) => {
+    const onScanSuccess = async (decodedText: string) => {
       try {
         let finalData: any = null;
+        const trimmed = decodedText.trim();
 
-        if (decodedText.includes("?data=")) {
-          const urlParts = decodedText.split("?data=");
-          const rawJson = decodeURIComponent(urlParts[1]);
-          finalData = JSON.parse(rawJson);
-        } else if (decodedText.startsWith("{")) {
-          finalData = JSON.parse(decodedText);
-        } else {
-          const lines = decodedText.split("\n");
+        // Case 1: URL with ?data=
+        if (trimmed.includes("?data=")) {
+          const url = new URL(trimmed);
+          const rawJson = url.searchParams.get("data");
+
+          if (rawJson) {
+            finalData = JSON.parse(decodeURIComponent(rawJson));
+          }
+        }
+
+        // Case 2: Pure JSON
+        else if (trimmed.startsWith("{")) {
+          finalData = JSON.parse(trimmed);
+        }
+
+        // Case 3: Key-value format
+        else {
           const data: any = {};
-          lines.forEach((line) => {
-            const [key, ...val] = line.split(": ");
-            if (key) data[key.toLowerCase().trim()] = val.join(": ").trim();
+
+          trimmed.split("\n").forEach((line) => {
+            const separatorIndex = line.indexOf(":");
+
+            if (separatorIndex > -1) {
+              const key = line.slice(0, separatorIndex).toLowerCase().trim();
+              const value = line.slice(separatorIndex + 1).trim();
+              data[key] = value;
+            }
           });
+
           finalData = data;
         }
 
         if (finalData) {
           setPatientData(finalData);
-          scanner.clear().catch((err) => console.error("Clear error", err));
+          await scanner.clear();
         }
       } catch (err) {
         console.error("Decoding error:", err);
@@ -177,6 +189,11 @@ export default function ScanQR() {
                   </p>
                 </div>
               </div>
+
+              {/* Blood Type Highlight */}
+              <div className="bg-white text-red-600 font-extrabold px-4 py-2 rounded-xl text-lg shadow">
+                Blood Type: {patientData.blood || "N/A"}
+              </div>
             </div>
 
             {/* CONTENT */}
@@ -211,6 +228,9 @@ export default function ScanQR() {
                   </p>
                   <p>
                     <strong>Civil Status:</strong> {patientData.civilStatus}
+                  </p>
+                  <p>
+                    <strong>Religion:</strong> {patientData.religion || "N/A"}
                   </p>
                 </div>
 
@@ -266,7 +286,7 @@ export default function ScanQR() {
                     </p>
                   ) : (
                     <p>
-                      <strong>No Active Medication:</strong>
+                      <strong>No Active Medication</strong>
                     </p>
                   )}
 

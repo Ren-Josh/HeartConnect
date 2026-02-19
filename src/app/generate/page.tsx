@@ -15,6 +15,7 @@ export default function GenerateQR() {
     barangay: "",
     municipality: "",
     province: "",
+    religion: "",
     phone: "",
     emergencyContactPerson: "",
     emergencyContactNumber: "",

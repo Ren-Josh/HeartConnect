@@ -9,6 +9,8 @@ import {
   MapPin,
   Ruler,
   Weight,
+  Activity,
+  Church,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -212,6 +214,44 @@ export function PersonalInformation({
               <span>Widowed</span>
             </label>
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-md font-medium flex items-center gap-2">
+            <Activity size={16} /> Blood Type
+          </label>
+          <select
+            className="w-full border-2 border-gray-400/50 p-2 rounded cursor-pointer"
+            onChange={(e) =>
+              setFormData({ ...formData, blood: e.target.value })
+            }
+          >
+            <option className="text-gray-400" selected disabled hidden>
+              Select Blood Type
+            </option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+          </select>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-md font-medium flex items-center gap-2">
+            <Church size={16} /> Religion
+          </label>
+          <input
+            className="w-full border-2 border-gray-400/50 p-2 rounded"
+            placeholder="e.g. Catholic"
+            onChange={(e) =>
+              setFormData({ ...formData, religion: e.target.value })
+            }
+            required
+          />
         </div>
 
         <div className="space-y-2 md:col-span-2">
