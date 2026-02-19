@@ -8,6 +8,7 @@ import {
   ScanLine,
   HeartPulse,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function ScanQR() {
   const [patientData, setPatientData] = useState<any>(null);
@@ -60,7 +61,7 @@ export default function ScanQR() {
       {
         fps: 30,
         qrbox: (w, h) => {
-          const size = Math.floor(Math.min(w, h) * 0.9);
+          const size = Math.floor(Math.min(w, h) * 0.8);
           return { width: size, height: size };
         },
         aspectRatio: 1.0,
@@ -190,8 +191,8 @@ export default function ScanQR() {
               </div>
 
               {/* Blood Type Highlight */}
-              <div className="bg-white text-red-600 font-extrabold px-4 py-2 rounded-xl text-lg shadow">
-                Blood Type: {patientData.bt || "N/A"}
+              <div className="bg-white text-red-600 font-extrabold px-4 py-2 rounded-xl text-sm shadow">
+                BloodType: {patientData.bt || "N/A"}
               </div>
             </div>
 
@@ -372,13 +373,13 @@ export default function ScanQR() {
             </div>
           </div>
 
-          <button
+          <Link
             onClick={() => window.location.reload()}
+            href="/scan"
             className="w-fit self-center flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-md transition-all shadow-lg hover:shadow-blue-200 active:scale-95 cursor-pointer"
           >
-            <ScanLine size={18} />
-            Scan Another
-          </button>
+            <ScanLine size={18} /> Scan Another
+          </Link>
         </div>
       )}
     </div>
