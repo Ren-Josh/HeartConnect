@@ -89,7 +89,7 @@ export function FamilyMedicalHistory({
               <span>Other</span>
             </label>
 
-            {formData.familyHistory.includes("Other") && (
+            {formData.famh.includes("Other") && (
               <div>
                 <label className="text-sm font-medium ">Please specify:</label>
                 <input
