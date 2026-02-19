@@ -8,17 +8,17 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
     e.preventDefault();
     if (
       formData.sex == "Select Sex" ||
-      (formData.sex === "Female" && !formData.menstruation) ||
-      !formData.civilStatus ||
-      !formData.hasMedication ||
-      !formData.hasLatexAllergy ||
-      !formData.hasOtherAllergies ||
-      formData.smokingStatus == "" ||
-      formData.drinkingStatus == "" ||
-      formData.physicalActivity == "" ||
-      formData.dietType == "" ||
-      formData.eatingFrequency == "" ||
-      formData.sleepPattern == ""
+      (formData.sex === "Female" && !formData.mens) ||
+      !formData.cs ||
+      !formData.hm ||
+      !formData.hla ||
+      !formData.hoa ||
+      formData.ss == "" ||
+      formData.ds == "" ||
+      formData.pa == "" ||
+      formData.dt == "" ||
+      formData.ef == "" ||
+      formData.sp == ""
     ) {
       document.getElementById("error-message")!.classList.remove("hidden");
       setQrUrl("");
@@ -29,7 +29,7 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
       const baseUrl = "https://heart-connect-qr.vercel.app/scan";
       const redirectUrl = `${baseUrl}?data=${encodedData}`;
       setQrUrl(
-        `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(redirectUrl)}&size=1000x1000&qzone=5&margin=10`,
+        `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(redirectUrl)}&size=1000x1000`,
       );
     }
   };

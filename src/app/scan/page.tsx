@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
 import {
   UploadCloud,
   Camera,
@@ -14,6 +14,8 @@ export default function ScanQR() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // 1️⃣ Prefill from URL
     const searchParams = new URLSearchParams(window.location.search);
     const dataFromUrl = searchParams.get("data");
 
@@ -26,68 +28,65 @@ export default function ScanQR() {
       }
     }
 
+    // 2️⃣ Parsing function
+    const parseQRCode = (decodedText: string) => {
+      const trimmed = decodedText.trim();
+      let finalData: any = null;
+
+      if (trimmed.includes("?data=")) {
+        const url = new URL(trimmed);
+        const rawJson = url.searchParams.get("data");
+        if (rawJson) finalData = JSON.parse(decodeURIComponent(rawJson));
+      } else if (trimmed.startsWith("{")) {
+        finalData = JSON.parse(trimmed);
+      } else {
+        finalData = {};
+        trimmed.split("\n").forEach((line) => {
+          const idx = line.indexOf(":");
+          if (idx > -1) {
+            const key = line.slice(0, idx).toLowerCase().trim();
+            const value = line.slice(idx + 1).trim();
+            finalData[key] = value;
+          }
+        });
+      }
+
+      return finalData;
+    };
+
+    // 3️⃣ Initialize Html5QrcodeScanner (camera + file)
     const scanner = new Html5QrcodeScanner(
       "reader",
       {
-        fps: 20,
+        fps: 30,
+        qrbox: (w, h) => {
+          const size = Math.floor(Math.min(w, h) * 0.9);
+          return { width: size, height: size };
+        },
         aspectRatio: 1.0,
         rememberLastUsedCamera: false,
-        videoConstraints: {
-          facingMode: { ideal: "environment" },
-        },
+        videoConstraints: { facingMode: "environment" },
       },
-      false,
+      true,
     );
 
+    // 4️⃣ Scan success callback
     const onScanSuccess = async (decodedText: string) => {
       try {
-        let finalData: any = null;
-        const trimmed = decodedText.trim();
-
-        // Case 1: URL with ?data=
-        if (trimmed.includes("?data=")) {
-          const url = new URL(trimmed);
-          const rawJson = url.searchParams.get("data");
-
-          if (rawJson) {
-            finalData = JSON.parse(decodeURIComponent(rawJson));
-          }
-        }
-
-        // Case 2: Pure JSON
-        else if (trimmed.startsWith("{")) {
-          finalData = JSON.parse(trimmed);
-        }
-
-        // Case 3: Key-value format
-        else {
-          const data: any = {};
-
-          trimmed.split("\n").forEach((line) => {
-            const separatorIndex = line.indexOf(":");
-
-            if (separatorIndex > -1) {
-              const key = line.slice(0, separatorIndex).toLowerCase().trim();
-              const value = line.slice(separatorIndex + 1).trim();
-              data[key] = value;
-            }
-          });
-
-          finalData = data;
-        }
-
-        if (finalData) {
-          setPatientData(finalData);
+        const data = parseQRCode(decodedText);
+        if (data) {
+          setPatientData(data);
           await scanner.clear();
         }
       } catch (err) {
         console.error("Decoding error:", err);
-        alert("Could not parse medical data from this QR code.");
+        alert("Could not parse QR code.");
       }
     };
 
-    scanner.render(onScanSuccess, (error) => {});
+    scanner.render(onScanSuccess, (err) => {});
 
+    // 5️⃣ Cleanup
     return () => {
       scanner.clear().catch((err) => console.error("Cleanup error", err));
     };
@@ -249,8 +248,8 @@ export default function ScanQR() {
 
                 <div className="space-y-2 text-sm">
                   <p>
-                    <strong>Address:</strong> {patientData.street},{" "}
-                    {patientData.barangay}, {patientData.municipality},{" "}
+                    <strong>Address:</strong> {patientData.st},{" Brgy. "}
+                    {patientData.brgy}, {patientData.muni},{" "}
                     {patientData.province}
                   </p>
                   <p>

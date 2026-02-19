@@ -231,7 +231,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 </div>
               </div>
 
-              {formData.hasMedication == "yes" && (
+              {formData.hm == "yes" && (
                 <div>
                   <label className="text-sm font-medium ">
                     Please specify:
@@ -330,7 +330,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
                 </div>
               </div>
 
-              {formData.hasOtherAllergies == "yes" && (
+              {formData.hoa == "yes" && (
                 <div>
                   <label className="text-sm font-medium ">
                     Please specify:

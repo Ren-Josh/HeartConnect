@@ -11,7 +11,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
       printWindow.document.write(`
         <html>
           <head>
-            <title>Heart-Connect | ${formData.name}</title>
+            <title>Heart-Connect | ${formData.n}</title>
             <style>
               body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; }
               img { width: 96px; height: 96px; border: 1px solid #eee; }
@@ -21,7 +21,7 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
           </head>
           <body>
             <img src="${qrUrl}" />
-            <h2>${formData.name}</h2>
+            <h2>${formData.n}</h2>
             <p>Medical Identification QR Code</p>
             <script>window.onload = function() { window.print(); window.close(); }</script>
           </body>
@@ -37,10 +37,9 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `HeartConnect_${formData.name.replace(/\s+/g, "_")}.png`;
+    link.download = `HeartConnect_${formData.n.replace(/\s+/g, "_")}.png`;
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -79,8 +78,8 @@ export function HandleGenerateQR({ qrUrl, formData }: any) {
               </button>
             </div>
             <p className="mt-4 text-slate-400 text-xs text-center leading-relaxed">
-              {formData.name}'s QR contains encoded personal and medical data
-              for medical access.
+              {formData.n}'s QR contains encoded personal and medical data for
+              medical access.
             </p>
           </div>
         ) : (
