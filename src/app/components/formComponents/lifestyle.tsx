@@ -31,8 +31,7 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
             </select>
           </div>
 
-          {(formData.smokingStatus == "Smoking" ||
-            formData.smokingStatus == "Former Smoker") && (
+          {(formData.ss == "Smoking" || formData.ss == "Former Smoker") && (
             <div className="space-x-5 space-y-3">
               <label className="text-sm flex items-center font-medium">
                 Used/Using E-Cigarrete/Vape
