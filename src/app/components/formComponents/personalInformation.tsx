@@ -93,7 +93,7 @@ export function PersonalInformation({
             value={formData.sex}
             onChange={(e) => {
               if (formData.sex === "Male")
-                setFormData({ ...formData, menstruation: "" });
+                setFormData({ ...formData, mens: "" });
               setFormData({ ...formData, sex: e.target.value });
             }}
           >
@@ -118,7 +118,7 @@ export function PersonalInformation({
                 name="menstruation"
                 id="regular"
                 onChange={(e) =>
-                  setFormData({ ...formData, menstruation: e.target.value })
+                  setFormData({ ...formData, mens: e.target.value })
                 }
               />
               <span>Regular</span>
@@ -129,7 +129,7 @@ export function PersonalInformation({
                 value={"Irregular Menstruation"}
                 name="menstruation"
                 onChange={(e) =>
-                  setFormData({ ...formData, menstruation: e.target.value })
+                  setFormData({ ...formData, mens: e.target.value })
                 }
               />
               <span>Irregular</span>
