@@ -8,11 +8,11 @@ export function HandleFormQR({ formData, setFormData, setQrUrl }: any) {
     e.preventDefault();
     if (
       formData.sex == "Select Sex" ||
-      (formData.sex === "Female" && !formData.mens) ||
-      !formData.cs ||
-      !formData.hm ||
-      !formData.hla ||
-      !formData.hoa ||
+      (formData.sex == "Female" && !formData.mens) ||
+      formData.cs == "" ||
+      formData.hm == "" ||
+      formData.hla == "" ||
+      formData.hoa == "" ||
       formData.ss == "" ||
       formData.ds == "" ||
       formData.pa == "" ||
