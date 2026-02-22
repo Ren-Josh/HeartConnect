@@ -24,7 +24,7 @@ export function FamilyMedicalHistory({
           <FileText size={16} /> Family Medical History
         </label>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 space-x-10 space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 space-x-5 space-y-2">
           <label className="cursor-pointer space-x-2">
             <input
               type="checkbox"
