@@ -39,7 +39,7 @@ export function EmergencyContact({ formData, setFormData }: formDataInterface) {
               inputMode="numeric"
               className="w-full border-2 border-gray-400/50 p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
               placeholder="09XXXXXXXXX or +639XXXXXXXXX"
-              value={formData.emergencyContactNumber}
+              value={formData.ecn}
               onChange={(e) => {
                 let input = e.target.value;
 
