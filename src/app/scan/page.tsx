@@ -16,7 +16,6 @@ export default function ScanQR() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // 1️⃣ Prefill from URL
     const searchParams = new URLSearchParams(window.location.search);
     const dataFromUrl = searchParams.get("data");
 
@@ -29,7 +28,6 @@ export default function ScanQR() {
       }
     }
 
-    // 2️⃣ Parsing function
     const parseQRCode = (decodedText: string) => {
       const trimmed = decodedText.trim();
       let finalData: any = null;
@@ -55,13 +53,12 @@ export default function ScanQR() {
       return finalData;
     };
 
-    // 3️⃣ Initialize Html5QrcodeScanner (camera + file)
     const scanner = new Html5QrcodeScanner(
       "reader",
       {
         fps: 30,
         qrbox: (w, h) => {
-          const size = Math.floor(Math.min(w, h) * 0.8);
+          const size = Math.floor(Math.min(w, h) * 1);
           return { width: size, height: size };
         },
         aspectRatio: 1.0,
@@ -71,7 +68,6 @@ export default function ScanQR() {
       true,
     );
 
-    // 4️⃣ Scan success callback
     const onScanSuccess = async (decodedText: string) => {
       try {
         const data = parseQRCode(decodedText);
@@ -87,7 +83,6 @@ export default function ScanQR() {
 
     scanner.render(onScanSuccess, (err) => {});
 
-    // 5️⃣ Cleanup
     return () => {
       scanner.clear().catch((err) => console.error("Cleanup error", err));
     };
