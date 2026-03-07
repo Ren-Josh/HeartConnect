@@ -349,8 +349,6 @@ export function LifeStye({ formData, setFormData }: formDataInterface) {
               )}
             </div>
           </div>
-
-          {/* end */}
         </div>
       </div>
     </>
